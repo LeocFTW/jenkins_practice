@@ -1,13 +1,9 @@
 pipeline {
   agent any
-  tools { 
-      maven 'mvn_3.9.6' 
-      jdk 'jdk-8' 
-  }
   stages {
     stage('check out') {
       steps {
-        git url: 'https://github.com/LeocFTW/jenkins_practice.git', branch: 'master'
+        git(url: 'https://github.com/LeocFTW/jenkins_practice.git', branch: 'master')
       }
     }
 
@@ -17,5 +13,17 @@ pipeline {
       }
     }
 
+    stage('added steps') {
+      steps {
+        sh '''mvn test
+mvn verify
+mvn clean'''
+      }
+    }
+
+  }
+  tools {
+    maven 'mvn_3.9.6'
+    jdk 'jdk-8'
   }
 }
