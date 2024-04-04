@@ -1,14 +1,21 @@
 pipeline {
   agent any
+  tools { 
+      maven 'DHT_MVN' 
+      jdk 'DHT_SENSE' 
+  }
   stages {
     stage('check out') {
       steps {
-        sh 'git(url: \'https://github.com/LeocFTW/jenkins_practice.git\', branch: \'master\')'
+        git(url: 'https://github.com/dhetong/maven-samples-A6.git', branch: 'master')
       }
     }
 
-  }
-  environment {
-    maven = 'mvn'
+    stage('run') {
+      steps {
+        sh 'mvn verify'
+      }
+    }
+
   }
 }
