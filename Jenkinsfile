@@ -1,13 +1,13 @@
 pipeline {
   agent any
   tools { 
-      maven 'DHT_MVN' 
-      jdk 'DHT_SENSE' 
+      maven 'mvn_3.9.6' 
+      jdk 'jdk-8' 
   }
   stages {
     stage('check out') {
       steps {
-        git(url: 'https://github.com/dhetong/maven-samples-A6.git', branch: 'master')
+        git(url: 'https://github.com/LeocFTW/jenkins_practice.git', branch: 'master')
       }
     }
 
